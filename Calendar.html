@@ -1,165 +1,155 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
   <meta charset="UTF-8">
-  <title>Calendar For Bangladesh </title>
-<style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar</title>
+  <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f2f5;
       display: flex;
       justify-content: center;
-      padding: 20px;
+      padding: 30px;
     }
-    .calendar-container {
-      width: 600px;
-      background: white;
-      padding: 20px 30px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    .calendar-card {
+      width: 350px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
     }
     .header {
+      background: #1a73e8;
+      color: white;
+      padding: 15px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 28px;
-      font-weight: bold;
-      margin-bottom: 20px;
     }
-    .months-grid {
+    .header button {
+      background: white;
+      color: #1a73e8;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .weekdays {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-    }
-    .month-card {
-      border: 1px solid #ccc;
-    }
-    .month-header {
-      background-color: black;
-      color: white;
+      grid-template-columns: repeat(7, 1fr);
+      background: #e8f0fe;
       text-align: center;
-      padding: 4px;
       font-weight: bold;
+      font-size: 13px;
+      padding: 8px 0;
+      color: #1a73e8;
+    }
+    .days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      padding: 10px;
+      gap: 5px;
+      text-align: center;
+    }
+    .day-box {
+      padding: 8px 0;
+      border-radius: 6px;
       font-size: 14px;
+      cursor: pointer;
     }
-    .week-days {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      background-color: #2b5797;
+    .day-box:hover {
+      background-color: #f1f3f4;
+    }
+    .today {
+      background-color: #1a73e8 !important;
       color: white;
-      text-align: center;
-      font-size: 10px;
-      font-weight: bold;
-      padding: 3px 0;
-    }
-    .days-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      text-align: center;
-      font-size: 11px;
-      padding: 5px 0;
-      row-gap: 4px;
-    }
-    .day {
-      padding: 2px 0;
-    }
-    .holiday {
-      color: red;
       font-weight: bold;
     }
-    .holidays-section {
-      margin-top: 20px;
-      font-size: 12px;
-    }
-    .holidays-title {
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-    .holidays-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5px 20px;
+    .multi-date-preview {
+      padding: 15px;
+      background: #f8f9fa;
+      border-top: 1px solid #ddd;
+      font-size: 13px;
     }
   </style>
 </head>
 <body>
 
-<div class="calendar-container">
+<div class="calendar-card">
   <div class="header">
-    <span id="year-title">2026</span>
-    <span>Calendar for Bangladesh</span>
+    <button onclick="changeMonth(-1)">❮</button>
+    <h3 id="month-year-title"></h3>
+    <button onclick="changeMonth(1)">❯</button>
   </div>
 
-  <div class="months-grid" id="calendar"></div>
+  <div class="weekdays">
+    <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+  </div>
 
-  <div class="holidays-section">
-    <div class="holidays-title" id="holiday-title">Holidays for Bangladesh</div>
-    <div class="holidays-list" id="holiday-list">
-      <div><b>Feb 21</b> Language Day</div>
-      <div><b>Mar 26</b> Independence Day</div>
-      <div><b>April 14</b> Bangla New year</div>
-      <div><b>May 01</b> may day</div>
-      <div><b>Dec 16</b> Victory Day</div>
-      <div><b>Dec 25</b> Christmas Day</div>
-    </div>
+  <div class="days" id="days-container"></div>
+
+  <div class="multi-date-preview">
+    <div><b>আজকের তারিখ:</b></div>
+    <div id="en-date"></div>
+    <div id="bn-date"></div>
+    <div id="ar-date"></div>
   </div>
 </div>
 
 <script>
-  const year = 2026;
-  document.getElementById('year-title').innerText = year;
-  document.getElementById('holiday-title').innerText = `${year} Holidays for Bangladesh`;
+  let currentDate = new Date();
 
-  const monthNames = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-  ];
+  function renderCalendar() {
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
 
-  const calendarDiv = document.getElementById("calendar");
+    const monthNames = ["January", "February", "March", "April", "May", "June", 
+                        "July", "August", "September", "October", "November", "December"];
 
-  for (let month = 0; month < 12; month++) {
-    const monthCard = document.createElement("div");
-    monthCard.className = "month-card";
+    document.getElementById('month-year-title').innerText = `${monthNames[month]} ${year}`;
 
-    const monthHeader = document.createElement("div");
-    monthHeader.className = "month-header";
-    monthHeader.innerText = monthNames[month];
-    monthCard.appendChild(monthHeader);
-
-    const weekDays = document.createElement("div");
-    weekDays.className = "week-days";
-    ["S", "M", "T", "W", "T", "F", "S"].forEach(day => {
-      const dayDiv = document.createElement("div");
-      dayDiv.innerText = day;
-      weekDays.appendChild(dayDiv);
-    });
-    monthCard.appendChild(weekDays);
-
-    const daysGrid = document.createElement("div");
-    daysGrid.className = "days-grid";
+    const daysContainer = document.getElementById('days-container');
+    daysContainer.innerHTML = '';
 
     const firstDay = new Date(year, month, 1).getDay();
     const totalDays = new Date(year, month + 1, 0).getDate();
 
     for (let i = 0; i < firstDay; i++) {
-      const emptyDiv = document.createElement("div");
-      daysGrid.appendChild(emptyDiv);
+      daysContainer.innerHTML += `<div></div>`;
     }
+
+    const today = new Date();
 
     for (let day = 1; day <= totalDays; day++) {
-      const dayDiv = document.createElement("div");
-      dayDiv.className = "day";
-      
-      const dayOfWeek = new Date(year, month, day).getDay();
-      if (dayOfWeek === 5) { // শুক্রবার লাল রঙের ছুটির দিন
-        dayDiv.classList.add("holiday");
-      }
-
-      dayDiv.innerText = day;
-      daysGrid.appendChild(dayDiv);
+      const isToday = day === today.getDate() && month === today.getMonth() && year === today.getFullYear();
+      const todayClass = isToday ? 'today' : '';
+      daysContainer.innerHTML += `<div class="day-box ${todayClass}">${day}</div>`;
     }
 
-    monthCard.appendChild(daysGrid);
-    calendarDiv.appendChild(monthCard);
+    updateMultilingualDates(today);
   }
+
+  function changeMonth(direction) {
+    currentDate.setMonth(currentDate.getMonth() + direction);
+    renderCalendar();
+  }
+
+  // বাংলা ও আরবি তারিখ কনভার্ট করার ফাংশন
+  function updateMultilingualDates(date) {
+    // English
+    document.getElementById('en-date').innerText = "English: " + date.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
+
+    // Bangla (JavaScript Intl API)
+    document.getElementById('bn-date').innerText = "বাংলা: " + date.toLocaleDateString('bn-BD', { day: 'numeric', month: 'long', year: 'numeric' });
+
+    // Arabic (Hijri)
+    document.getElementById('ar-date').innerText = "العربية: " + date.toLocaleDateString('ar-SA-u-ca-islamic', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  renderCalendar();
 </script>
+
+</body>
 </html>
