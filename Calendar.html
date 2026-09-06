@@ -4,151 +4,89 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calendar</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f0f2f5;
-      display: flex;
-      justify-content: center;
-      padding: 30px;
+      margin: 20px;
+      background-color: #f8f9fa;
     }
-    .calendar-card {
-      width: 350px;
+    .calendar-container {
+      max-width: 1000px;
+      margin: 0 auto;
       background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      overflow: hidden;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
-    .header {
-      background: #1a73e8;
-      color: white;
-      padding: 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .header button {
-      background: white;
-      color: #1a73e8;
-      border: none;
-      padding: 5px 12px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .weekdays {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      background: #e8f0fe;
-      text-align: center;
-      font-weight: bold;
-      font-size: 13px;
-      padding: 8px 0;
+    /* FullCalendar styling tweaks */
+    .fc-toolbar-title {
+      font-size: 1.4rem !important;
       color: #1a73e8;
     }
-    .days {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      padding: 10px;
-      gap: 5px;
-      text-align: center;
-    }
-    .day-box {
-      padding: 8px 0;
-      border-radius: 6px;
-      font-size: 14px;
-      cursor: pointer;
-    }
-    .day-box:hover {
-      background-color: #f1f3f4;
-    }
-    .today {
+    .fc-button-primary {
       background-color: #1a73e8 !important;
-      color: white;
-      font-weight: bold;
+      border-color: #1a73e8 !important;
     }
-    .multi-date-preview {
-      padding: 15px;
-      background: #f8f9fa;
-      border-top: 1px solid #ddd;
-      font-size: 13px;
+    .fc-button-active {
+      background-color: #1557b0 !important;
     }
   </style>
 </head>
 <body>
 
-<div class="calendar-card">
-  <div class="header">
-    <button onclick="changeMonth(-1)">❮</button>
-    <h3 id="month-year-title"></h3>
-    <button onclick="changeMonth(1)">❯</button>
-  </div>
-
-  <div class="weekdays">
-    <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
-  </div>
-
-  <div class="days" id="days-container"></div>
-
-  <div class="multi-date-preview">
-    <div><b>আজকের তারিখ:</b></div>
-    <div id="en-date"></div>
-    <div id="bn-date"></div>
-    <div id="ar-date"></div>
-  </div>
+<div class="calendar-container">
+  <div id="calendar"></div>
 </div>
 
 <script>
-  let currentDate = new Date();
+  document.addEventListener('DOMContentLoaded', function() {
+    const calendarEl = document.getElementById('calendar');
 
-  function renderCalendar() {
-    const year = currentDate.getFullYear();
-    const month = currentDate.getMonth();
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'multiMonthYear,dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+      },
+      // বোতামগুলোর নাম কাস্টমাইজ করা
+      buttonText: {
+        today: 'আজ',
+        multiMonthYear: 'Year',
+        dayGridMonth: 'Month',
+        timeGridWeek: 'Week',
+        timeGridDay: 'Day',
+        listMonth: 'Agenda'
+      },
+      firstDay: 0, // রবিবার থেকে শুরু (বাংলাদেশের জন্য ১ দিয়ে সোমবারও করা যায়)
+      editable: true,
+      selectable: true,
+      
+      // স্যাম্পল ইভেন্ট বা ছুটির দিন (পরবর্তীতে ব্যাকএন্ড/API থেকে আসবে)
+      events: [
+        {
+          title: 'Language Martyrs\' Day',
+          start: '2026-02-21',
+          color: '#d93025'
+        },
+        {
+          title: 'Independence Day',
+          start: '2026-03-26',
+          color: '#d93025'
+        },
+        {
+          title: 'Victory Day',
+          start: '2026-12-16',
+          color: '#d93025'
+        }
+      ]
+    });
 
-    const monthNames = ["January", "February", "March", "April", "May", "June", 
-                        "July", "August", "September", "October", "November", "December"];
-
-    document.getElementById('month-year-title').innerText = `${monthNames[month]} ${year}`;
-
-    const daysContainer = document.getElementById('days-container');
-    daysContainer.innerHTML = '';
-
-    const firstDay = new Date(year, month, 1).getDay();
-    const totalDays = new Date(year, month + 1, 0).getDate();
-
-    for (let i = 0; i < firstDay; i++) {
-      daysContainer.innerHTML += `<div></div>`;
-    }
-
-    const today = new Date();
-
-    for (let day = 1; day <= totalDays; day++) {
-      const isToday = day === today.getDate() && month === today.getMonth() && year === today.getFullYear();
-      const todayClass = isToday ? 'today' : '';
-      daysContainer.innerHTML += `<div class="day-box ${todayClass}">${day}</div>`;
-    }
-
-    updateMultilingualDates(today);
-  }
-
-  function changeMonth(direction) {
-    currentDate.setMonth(currentDate.getMonth() + direction);
-    renderCalendar();
-  }
-
-  // বাংলা ও আরবি তারিখ কনভার্ট করার ফাংশন
-  function updateMultilingualDates(date) {
-    // English
-    document.getElementById('en-date').innerText = "English: " + date.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
-
-    // Bangla (JavaScript Intl API)
-    document.getElementById('bn-date').innerText = "বাংলা: " + date.toLocaleDateString('bn-BD', { day: 'numeric', month: 'long', year: 'numeric' });
-
-    // Arabic (Hijri)
-    document.getElementById('ar-date').innerText = "العربية: " + date.toLocaleDateString('ar-SA-u-ca-islamic', { day: 'numeric', month: 'long', year: 'numeric' });
-  }
-
-  renderCalendar();
+    calendar.render();
+  });
 </script>
 
 </body>
