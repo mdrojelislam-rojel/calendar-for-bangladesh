@@ -4,39 +4,93 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Calendar</title>
+  <title>Calendar for Bangladesh</title>
 
-  <!-- FullCalendar -->
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
 
   <style>
 
-    /* ==============================
-       MAIN PAGE
-    ============================== */
+    /* =========================================
+       PAGE
+    ========================================= */
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 20px;
-      background-color: #f8f9fa;
+    * {
+      box-sizing: border-box;
     }
 
-    .calendar-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      background: #ffffff;
+    body {
+      margin: 0;
       padding: 20px;
-      border-radius: 12px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f7fa;
+      color: #222;
+    }
+
+
+    /* =========================================
+       MAIN CALENDAR WRAPPER
+    ========================================= */
+
+    .calendar-wrapper {
+      width: 100%;
+      max-width: 1800px;
+      margin: 0 auto;
+    }
+
+
+    /* =========================================
+       HEADER
+    ========================================= */
+
+    .calendar-header {
+      width: 100%;
+      margin: 10px auto;
+      background: #000075;
+      color: #ffffff;
+
+      padding: 22px 25px;
+
+      border-radius: 10px;
+
+      text-align: center;
+
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .calendar-header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .calendar-header p {
+      margin: 5px 0 0;
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+
+    /* =========================================
+       CALENDAR CONTAINER
+    ========================================= */
+
+    .calendar-container {
+      width: 100%;
+      background: #ffffff;
+
+      padding: 25px;
+
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
 
 
-    /* ==============================
-       CALENDAR TOOLBAR
-    ============================== */
+    /* =========================================
+       TOOLBAR
+    ========================================= */
 
     .fc .fc-toolbar {
-      margin-bottom: 18px;
+      margin-bottom: 20px;
       gap: 10px;
     }
 
@@ -47,9 +101,9 @@
     }
 
 
-    /* ==============================
+    /* =========================================
        BUTTONS
-    ============================== */
+    ========================================= */
 
     .fc .fc-button {
       border-radius: 7px !important;
@@ -67,22 +121,18 @@
       border-color: #1557b0 !important;
     }
 
-    .fc .fc-button-primary:focus {
-      box-shadow: none !important;
-    }
-
     .fc .fc-button-active {
       background-color: #1557b0 !important;
       border-color: #1557b0 !important;
     }
 
 
-    /* ==============================
+    /* =========================================
        MONTH VIEW
-    ============================== */
+    ========================================= */
 
     .fc-daygrid-day {
-      min-height: 75px;
+      min-height: 90px;
     }
 
     .fc .fc-col-header-cell {
@@ -92,7 +142,7 @@
     .fc .fc-col-header-cell-cushion {
       color: #1a73e8;
       font-weight: 700;
-      padding: 10px 4px;
+      padding: 11px 4px;
     }
 
     .fc .fc-daygrid-day-number {
@@ -102,20 +152,21 @@
     }
 
 
-    /* ==============================
+    /* =========================================
        TODAY - MONTH VIEW
-    ============================== */
+    ========================================= */
 
     .fc .fc-day-today {
       background: #eaf3ff !important;
     }
 
     .fc .fc-day-today .fc-daygrid-day-number {
+
       background: #1a73e8;
       color: #ffffff !important;
 
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
 
       display: flex;
       align-items: center;
@@ -124,118 +175,133 @@
       border-radius: 50%;
 
       margin: 5px;
+
       font-weight: 700;
     }
 
 
-    /* ==============================
+    /* =========================================
        YEAR VIEW
-    ============================== */
+    ========================================= */
 
     .fc-multiMonthYear-view {
       margin-top: 5px;
     }
 
-    /*
-       3 columns × 4 rows
-    */
-
     .fc-multiMonthYear-view .fc-multimonth {
-      gap: 18px;
+      gap: 20px;
     }
 
     .fc-multimonth-month {
+
       border: 1px solid #e0e6ed;
+
       border-radius: 9px;
+
       overflow: hidden;
+
       background: #ffffff;
+
       transition: 0.2s ease;
     }
 
 
-    /* ==============================
-       YEAR VIEW MONTH TITLE
-    ============================== */
+    /* =========================================
+       YEAR MONTH TITLE
+    ========================================= */
 
     .fc .fc-multimonth-title {
+
       background: #1a73e8;
+
       color: #ffffff;
 
       font-size: 1rem;
+
       font-weight: 700;
 
-      padding: 8px;
+      padding: 9px;
+
       margin: 0;
+
       text-align: center;
     }
 
 
-    /* ==============================
-       YEAR VIEW WEEK HEADER
-    ============================== */
+    /* =========================================
+       YEAR WEEK HEADER
+    ========================================= */
 
     .fc-multimonth-month .fc-col-header-cell {
       background: #eef4fb;
     }
 
     .fc-multimonth-month .fc-col-header-cell-cushion {
+
       color: #1a73e8;
+
       font-size: 0.75rem;
+
       font-weight: 700;
+
       padding: 5px 2px;
     }
 
 
-    /* ==============================
-       YEAR VIEW DATE
-    ============================== */
+    /* =========================================
+       YEAR DATE
+    ========================================= */
 
     .fc-multimonth-month .fc-daygrid-day-number {
+
       font-size: 0.75rem;
+
       padding: 4px;
+
       color: #333;
     }
 
 
-    /* ==============================
+    /* =========================================
        CURRENT MONTH HIGHLIGHT
-    ============================== */
-
-    /*
-       JavaScript current-month class
-       is added to dates belonging
-       to the current month.
-    */
+    ========================================= */
 
     .fc-multimonth-month.current-month {
+
       border: 2px solid #1a73e8;
 
       box-shadow:
-        0 4px 12px rgba(26,115,232,0.15);
+        0 4px 14px rgba(26,115,232,0.18);
     }
 
-    .fc-multimonth-month.current-month .fc-multimonth-title {
+    .fc-multimonth-month.current-month
+    .fc-multimonth-title {
+
       background: #1557b0;
     }
 
 
-    /* ==============================
-       TODAY IN YEAR VIEW
-    ============================== */
+    /* =========================================
+       TODAY - YEAR VIEW
+    ========================================= */
 
     .fc-multimonth-month .fc-day-today {
+
       background: #eaf3ff !important;
     }
 
-    .fc-multimonth-month .fc-day-today .fc-daygrid-day-number {
+    .fc-multimonth-month .fc-day-today
+    .fc-daygrid-day-number {
 
       background: #1a73e8;
+
       color: #ffffff !important;
 
       width: 23px;
       height: 23px;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
@@ -247,78 +313,231 @@
     }
 
 
-    /* ==============================
+    /* =========================================
        EVENTS
-    ============================== */
+    ========================================= */
 
     .fc-event {
+
       border-radius: 4px !important;
+
       border: none !important;
+
       font-size: 0.75rem;
+
       padding: 1px 3px;
     }
 
 
-    /* ==============================
+    /* =========================================
+       SPECIAL DAYS FOOTER
+    ========================================= */
+
+    .special-days {
+
+      display: none;
+
+      width: 100%;
+
+      background: #ffffff;
+
+      border-top: 1px solid #e0e6ed;
+
+      padding: 22px 25px;
+
+      border-radius: 0 0 12px 12px;
+
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+
+    .special-days.show {
+      display: block;
+    }
+
+
+    .special-days-title {
+
+      color: #1a73e8;
+
+      font-size: 1.2rem;
+
+      font-weight: 700;
+
+      margin-bottom: 14px;
+    }
+
+
+    /* =========================================
+       EVENT LIST
+    ========================================= */
+
+    .special-event {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      padding: 10px 12px;
+
+      margin-bottom: 8px;
+
+      background: #f5f9ff;
+
+      border-left: 4px solid #1a73e8;
+
+      border-radius: 5px;
+    }
+
+
+    .special-event-date {
+
+      min-width: 75px;
+
+      font-weight: 700;
+
+      color: #1a73e8;
+    }
+
+
+    .special-event-name {
+
+      color: #333;
+
+      font-weight: 500;
+    }
+
+
+    /* =========================================
+       YEAR FOOTER GROUP
+    ========================================= */
+
+    .year-event-month {
+
+      margin-bottom: 15px;
+    }
+
+    .year-event-month-title {
+
+      font-weight: 700;
+
+      color: #1557b0;
+
+      margin-bottom: 7px;
+
+      font-size: 1rem;
+    }
+
+
+    /* =========================================
        MOBILE
-    ============================== */
+    ========================================= */
 
     @media screen and (max-width: 700px) {
 
       body {
-        margin: 8px;
+        padding: 8px;
+      }
+
+      .calendar-header {
+        padding: 18px 12px;
+      }
+
+      .calendar-header h1 {
+        font-size: 1.4rem;
+      }
+
+      .calendar-header p {
+        font-size: 0.8rem;
       }
 
       .calendar-container {
         padding: 10px;
-        border-radius: 10px;
       }
 
       .fc .fc-toolbar {
+
         flex-wrap: wrap;
+
         justify-content: center;
+
+        gap: 7px;
       }
 
       .fc .fc-toolbar-title {
-        font-size: 1.2rem !important;
-      }
 
-      .fc .fc-toolbar-chunk {
-        margin: 2px 0;
+        font-size: 1.15rem !important;
       }
 
       .fc .fc-button {
-        font-size: 0.8rem;
+
+        font-size: 0.78rem;
+
         padding: 6px 9px;
       }
 
 
-      /* Year view mobile */
+      /* Year view */
 
-      .fc-multiMonthYear-view .fc-multimonth {
-        grid-template-columns: repeat(1, 1fr) !important;
+      .fc-multiMonthYear-view
+      .fc-multimonth {
+
+        grid-template-columns:
+        repeat(1, 1fr) !important;
+
+        gap: 12px;
       }
 
-      .fc-multimonth-month .fc-daygrid-day-number {
+
+      .fc-multimonth-month
+      .fc-daygrid-day-number {
+
         font-size: 0.72rem;
+      }
+
+
+      /* Footer */
+
+      .special-days {
+
+        padding: 18px 14px;
+      }
+
+      .special-event {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 3px;
+      }
+
+      .special-event-date {
+
+        min-width: auto;
       }
 
     }
 
 
-    /* ==============================
-       VERY SMALL MOBILE
-    ============================== */
+    /* =========================================
+       SMALL MOBILE
+    ========================================= */
 
     @media screen and (max-width: 400px) {
 
       .fc .fc-button {
-        font-size: 0.72rem;
+
+        font-size: 0.7rem;
+
         padding: 5px 7px;
       }
 
       .fc .fc-toolbar-title {
-        font-size: 1.05rem !important;
+
+        font-size: 1rem !important;
       }
 
     }
@@ -329,6 +548,27 @@
 
 <body>
 
+
+<div class="calendar-wrapper">
+
+
+  <!-- =====================================
+       WEBSITE HEADER
+  ====================================== -->
+
+  <header class="calendar-header">
+
+    <h1>Calendar for Bangladesh</h1>
+
+    <p>Bangladesh Calendar • Holidays & Events</p>
+
+  </header>
+
+
+  <!-- =====================================
+       CALENDAR
+  ====================================== -->
+
   <div class="calendar-container">
 
     <div id="calendar"></div>
@@ -336,170 +576,515 @@
   </div>
 
 
-  <script>
+  <!-- =====================================
+       SPECIAL DAYS FOOTER
+  ====================================== -->
 
-    document.addEventListener('DOMContentLoaded', function () {
+  <div id="specialDays" class="special-days">
 
-      const calendarEl = document.getElementById('calendar');
+    <div id="specialDaysTitle"
+         class="special-days-title">
+    </div>
 
+    <div id="specialDaysList"></div>
 
-      /* ==============================
-         CALENDAR
-      ============================== */
-
-      const calendar = new FullCalendar.Calendar(calendarEl, {
-
-        /* Default view */
-        initialView: 'dayGridMonth',
+  </div>
 
 
-        /* ==============================
-           TOP MENU
-        ============================== */
-
-        headerToolbar: {
-
-          left: 'prev,next',
-
-          center: 'title',
-
-          right: 'multiMonthYear,dayGridMonth'
-
-        },
+</div>
 
 
-        /* ==============================
-           BUTTON TEXT
-        ============================== */
-
-        buttonText: {
-
-          multiMonthYear: 'Year',
-
-          dayGridMonth: 'Month'
-
-        },
+<script>
 
 
-        /* Sunday = 0 */
-        firstDay: 0,
+/* =========================================
+   EVENTS / BANGLADESH SPECIAL DAYS
+========================================= */
+
+const calendarEvents = [
+
+  {
+    title: "Language Martyrs' Day",
+    start: "2026-02-21",
+    color: "#d93025"
+  },
+
+  {
+    title: "Independence Day",
+    start: "2026-03-26",
+    color: "#d93025"
+  },
+
+  {
+    title: "Bangla New Year",
+    start: "2026-04-14",
+    color: "#d93025"
+  },
+
+  {
+    title: "May Day",
+    start: "2026-05-01",
+    color: "#d93025"
+  },
+
+  {
+    title: "Victory Day",
+    start: "2026-12-16",
+    color: "#d93025"
+  }
+
+];
 
 
-        /* Calendar options */
-        editable: true,
+document.addEventListener(
+  'DOMContentLoaded',
+  function () {
 
-        selectable: true,
+
+    const calendarEl =
+      document.getElementById('calendar');
 
 
-        /* ==============================
-           EVENTS / HOLIDAYS
-        ============================== */
+    /* =====================================
+       CALENDAR
+    ====================================== */
 
-        events: [
+    const calendar =
+      new FullCalendar.Calendar(
+        calendarEl,
+        {
 
-          {
-            title: "Language Martyrs' Day",
-            start: "2026-02-21",
-            color: "#d93025"
+          /* Default */
+          initialView: 'dayGridMonth',
+
+
+          /* =================================
+             HEADER MENU
+          ================================= */
+
+          headerToolbar: {
+
+            left: 'prev,next',
+
+            center: 'title',
+
+            right:
+              'multiMonthYear,dayGridMonth'
+
           },
 
-          {
-            title: "Independence Day",
-            start: "2026-03-26",
-            color: "#d93025"
+
+          /* Button names */
+
+          buttonText: {
+
+            multiMonthYear: 'Year',
+
+            dayGridMonth: 'Month'
+
           },
 
-          {
-            title: "Bangla New Year",
-            start: "2026-04-14",
-            color: "#d93025"
-          },
 
-          {
-            title: "May Day",
-            start: "2026-05-01",
-            color: "#d93025"
-          },
+          /* Sunday first */
 
-          {
-            title: "Victory Day",
-            start: "2026-12-16",
-            color: "#d93025"
+          firstDay: 0,
+
+
+          /* Options */
+
+          editable: true,
+
+          selectable: true,
+
+
+          /* Events */
+
+          events: calendarEvents,
+
+
+          /* =================================
+             VIEW CHANGED
+          ================================= */
+
+          datesSet: function () {
+
+            highlightCurrentMonth();
+
+            updateSpecialDays();
+
           }
 
-        ],
+        }
+      );
 
 
-        /* ==============================
-           AFTER VIEW IS RENDERED
-        ============================== */
+    calendar.render();
 
-        datesSet: function () {
 
-          highlightCurrentMonth();
+    /* =====================================
+       HIGHLIGHT CURRENT MONTH
+    ====================================== */
+
+    function highlightCurrentMonth() {
+
+
+      document
+        .querySelectorAll(
+          '.fc-multimonth-month'
+        )
+        .forEach(function (month) {
+
+          month.classList.remove(
+            'current-month'
+          );
+
+        });
+
+
+      document
+        .querySelectorAll(
+          '.fc-multimonth-month'
+        )
+        .forEach(function (month) {
+
+
+          const todayCell =
+            month.querySelector(
+              '.fc-day-today'
+            );
+
+
+          if (todayCell) {
+
+            month.classList.add(
+              'current-month'
+            );
+
+          }
+
+        });
+
+    }
+
+
+    /* =====================================
+       UPDATE SPECIAL DAYS FOOTER
+    ====================================== */
+
+    function updateSpecialDays() {
+
+
+      const footer =
+        document.getElementById(
+          'specialDays'
+        );
+
+
+      const title =
+        document.getElementById(
+          'specialDaysTitle'
+        );
+
+
+      const list =
+        document.getElementById(
+          'specialDaysList'
+        );
+
+
+      list.innerHTML = '';
+
+
+      const currentView =
+        calendar.view.type;
+
+
+      const currentDate =
+        calendar.getDate();
+
+
+      /* =================================
+         MONTH VIEW
+      ================================= */
+
+      if (
+        currentView === 'dayGridMonth'
+      ) {
+
+
+        const year =
+          currentDate.getFullYear();
+
+
+        const month =
+          currentDate.getMonth();
+
+
+        const monthEvents =
+          calendarEvents.filter(
+            function (event) {
+
+              const eventDate =
+                new Date(event.start);
+
+              return (
+                eventDate.getFullYear()
+                === year
+                &&
+                eventDate.getMonth()
+                === month
+              );
+
+            }
+          );
+
+
+        /* No events */
+
+        if (monthEvents.length === 0) {
+
+          footer.classList.remove('show');
+
+          return;
 
         }
 
-      });
+
+        const monthName =
+          currentDate.toLocaleString(
+            'en-US',
+            {
+              month: 'long'
+            }
+          );
 
 
-      calendar.render();
+        title.textContent =
+          monthName +
+          ' ' +
+          year +
+          ' – Special Days';
 
 
-      /* ==============================
-         CURRENT MONTH HIGHLIGHT
-      ============================== */
-
-      function highlightCurrentMonth() {
-
-        /*
-           Remove previous highlight
-        */
-
-        document
-          .querySelectorAll('.fc-multimonth-month')
-          .forEach(function(month) {
-
-            month.classList.remove('current-month');
-
-          });
+        monthEvents.forEach(
+          function (event) {
 
 
-        /*
-           Get today's date
-        */
-
-        const today = new Date();
-
-        const currentYear = today.getFullYear();
-
-        const currentMonth = today.getMonth();
+            const eventDate =
+              new Date(event.start);
 
 
-        /*
-           Find all mini calendars
-        */
+            const day =
+              eventDate.getDate();
 
-        document
-          .querySelectorAll('.fc-multimonth-month')
-          .forEach(function(month) {
 
-            /*
-               Look for today's month
-               using the day cells
-            */
+            const item =
+              document.createElement(
+                'div'
+              );
 
-            const todayCell = month.querySelector('.fc-day-today');
 
-            if (todayCell) {
+            item.className =
+              'special-event';
 
-              month.classList.add('current-month');
+
+            item.innerHTML =
+
+              '<div class="special-event-date">' +
+
+              day +
+              ' ' +
+              monthName +
+
+              '</div>' +
+
+              '<div class="special-event-name">' +
+
+              event.title +
+
+              '</div>';
+
+
+            list.appendChild(item);
+
+          }
+        );
+
+
+        footer.classList.add('show');
+
+      }
+
+
+      /* =================================
+         YEAR VIEW
+      ================================= */
+
+      else if (
+        currentView ===
+        'multiMonthYear'
+      ) {
+
+
+        const year =
+          currentDate.getFullYear();
+
+
+        const yearEvents =
+          calendarEvents.filter(
+            function (event) {
+
+              const eventDate =
+                new Date(event.start);
+
+              return (
+                eventDate.getFullYear()
+                === year
+              );
 
             }
-          });
-      }
-    });
+          );
 
-  </script>
+
+        /* No events */
+
+        if (yearEvents.length === 0) {
+
+          footer.classList.remove('show');
+
+          return;
+
+        }
+
+
+        title.textContent =
+          year +
+          ' – Special Days';
+
+
+        /*
+           Group events by month
+        */
+
+        const grouped = {};
+
+
+        yearEvents.forEach(
+          function (event) {
+
+
+            const date =
+              new Date(event.start);
+
+
+            const month =
+              date.getMonth();
+
+
+            if (!grouped[month]) {
+
+              grouped[month] = [];
+
+            }
+
+
+            grouped[month].push(event);
+
+          }
+        );
+
+
+        Object.keys(grouped).forEach(
+          function (monthIndex) {
+
+
+            const monthBox =
+              document.createElement(
+                'div'
+              );
+
+
+            monthBox.className =
+              'year-event-month';
+
+
+            const monthName =
+              new Date(
+                year,
+                monthIndex,
+                1
+              ).toLocaleString(
+                'en-US',
+                {
+                  month: 'long'
+                }
+              );
+
+
+            monthBox.innerHTML =
+
+              '<div class="year-event-month-title">' +
+
+              monthName +
+
+              '</div>';
+
+
+            grouped[monthIndex].forEach(
+              function (event) {
+
+
+                const date =
+                  new Date(event.start);
+
+
+                const item =
+                  document.createElement(
+                    'div'
+                  );
+
+
+                item.className =
+                  'special-event';
+
+
+                item.innerHTML =
+
+                  '<div class="special-event-date">' +
+
+                  date.getDate() +
+                  ' ' +
+                  monthName +
+
+                  '</div>' +
+
+                  '<div class="special-event-name">' +
+
+                  event.title +
+
+                  '</div>';
+
+
+                monthBox.appendChild(item);
+
+              }
+            );
+
+
+            list.appendChild(monthBox);
+
+          }
+        );
+
+        footer.classList.add('show');
+
+      }  
+
+  }
+
+);
+
+</script>
+
 </body>
 </html>
