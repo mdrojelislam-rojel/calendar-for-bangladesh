@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
   <title>Calendar for Bangladesh</title>
 
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+
 
   <style>
 
@@ -19,33 +23,52 @@
     }
 
     body {
+
       margin: 0;
+
       padding: 20px;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+      font-family:
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
+
       background: #f5f7fa;
+
       color: #222;
+
     }
 
 
     /* =========================================
-       MAIN CALENDAR WRAPPER
+       MAIN WRAPPER
     ========================================= */
 
     .calendar-wrapper {
+
       width: 100%;
+
       max-width: 1800px;
+
       margin: 0 auto;
+
     }
 
 
     /* =========================================
-       HEADER
+       WEBSITE HEADER
     ========================================= */
 
     .calendar-header {
+
       width: 100%;
+
       margin: 10px auto;
+
       background: #000075;
+
       color: #ffffff;
 
       padding: 22px 25px;
@@ -54,20 +77,33 @@
 
       text-align: center;
 
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      box-shadow:
+        0 4px 12px rgba(0,0,0,0.08);
+
     }
+
 
     .calendar-header h1 {
+
       margin: 0;
+
       font-size: 1.8rem;
+
       font-weight: 700;
+
       letter-spacing: 0.3px;
+
     }
 
+
     .calendar-header p {
+
       margin: 5px 0 0;
+
       font-size: 0.9rem;
+
       opacity: 0.9;
+
     }
 
 
@@ -76,12 +112,16 @@
     ========================================= */
 
     .calendar-container {
+
       width: 100%;
+
       background: #ffffff;
 
       padding: 25px;
 
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      box-shadow:
+        0 4px 12px rgba(0,0,0,0.08);
+
     }
 
 
@@ -90,14 +130,22 @@
     ========================================= */
 
     .fc .fc-toolbar {
+
       margin-bottom: 20px;
+
       gap: 10px;
+
     }
 
+
     .fc .fc-toolbar-title {
+
       font-size: 1.5rem !important;
+
       font-weight: 700;
+
       color: #1a73e8;
+
     }
 
 
@@ -106,24 +154,40 @@
     ========================================= */
 
     .fc .fc-button {
+
       border-radius: 7px !important;
+
       font-weight: 600;
+
       box-shadow: none !important;
+
     }
+
 
     .fc .fc-button-primary {
+
       background-color: #1a73e8 !important;
+
       border-color: #1a73e8 !important;
+
     }
+
 
     .fc .fc-button-primary:hover {
+
       background-color: #1557b0 !important;
+
       border-color: #1557b0 !important;
+
     }
 
+
     .fc .fc-button-active {
+
       background-color: #1557b0 !important;
+
       border-color: #1557b0 !important;
+
     }
 
 
@@ -132,44 +196,67 @@
     ========================================= */
 
     .fc-daygrid-day {
+
       min-height: 90px;
+
     }
+
 
     .fc .fc-col-header-cell {
+
       background: #eef4fb;
+
     }
+
 
     .fc .fc-col-header-cell-cushion {
+
       color: #1a73e8;
+
       font-weight: 700;
+
       padding: 11px 4px;
+
     }
 
+
     .fc .fc-daygrid-day-number {
+
       color: #222;
+
       font-weight: 500;
+
       padding: 8px;
+
     }
 
 
     /* =========================================
-       TODAY - MONTH VIEW
+       TODAY - MONTH
     ========================================= */
 
     .fc .fc-day-today {
+
       background: #eaf3ff !important;
+
     }
 
-    .fc .fc-day-today .fc-daygrid-day-number {
+
+    .fc .fc-day-today
+    .fc-daygrid-day-number {
 
       background: #1a73e8;
+
       color: #ffffff !important;
 
       width: 34px;
+
       height: 34px;
 
       display: flex;
+
       align-items: center;
+
       justify-content: center;
 
       border-radius: 50%;
@@ -177,6 +264,7 @@
       margin: 5px;
 
       font-weight: 700;
+
     }
 
 
@@ -185,12 +273,19 @@
     ========================================= */
 
     .fc-multiMonthYear-view {
+
       margin-top: 5px;
+
     }
 
-    .fc-multiMonthYear-view .fc-multimonth {
+
+    .fc-multiMonthYear-view
+    .fc-multimonth {
+
       gap: 20px;
+
     }
+
 
     .fc-multimonth-month {
 
@@ -203,6 +298,7 @@
       background: #ffffff;
 
       transition: 0.2s ease;
+
     }
 
 
@@ -225,6 +321,7 @@
       margin: 0;
 
       text-align: center;
+
     }
 
 
@@ -232,11 +329,16 @@
        YEAR WEEK HEADER
     ========================================= */
 
-    .fc-multimonth-month .fc-col-header-cell {
+    .fc-multimonth-month
+    .fc-col-header-cell {
+
       background: #eef4fb;
+
     }
 
-    .fc-multimonth-month .fc-col-header-cell-cushion {
+
+    .fc-multimonth-month
+    .fc-col-header-cell-cushion {
 
       color: #1a73e8;
 
@@ -245,6 +347,7 @@
       font-weight: 700;
 
       padding: 5px 2px;
+
     }
 
 
@@ -252,18 +355,20 @@
        YEAR DATE
     ========================================= */
 
-    .fc-multimonth-month .fc-daygrid-day-number {
+    .fc-multimonth-month
+    .fc-daygrid-day-number {
 
       font-size: 0.75rem;
 
       padding: 4px;
 
       color: #333;
+
     }
 
 
     /* =========================================
-       CURRENT MONTH HIGHLIGHT
+       CURRENT MONTH
     ========================================= */
 
     .fc-multimonth-month.current-month {
@@ -271,13 +376,17 @@
       border: 2px solid #1a73e8;
 
       box-shadow:
-        0 4px 14px rgba(26,115,232,0.18);
+        0 4px 14px
+        rgba(26,115,232,0.18);
+
     }
+
 
     .fc-multimonth-month.current-month
     .fc-multimonth-title {
 
       background: #1557b0;
+
     }
 
 
@@ -285,12 +394,16 @@
        TODAY - YEAR VIEW
     ========================================= */
 
-    .fc-multimonth-month .fc-day-today {
+    .fc-multimonth-month
+    .fc-day-today {
 
       background: #eaf3ff !important;
+
     }
 
-    .fc-multimonth-month .fc-day-today
+
+    .fc-multimonth-month
+    .fc-day-today
     .fc-daygrid-day-number {
 
       background: #1a73e8;
@@ -298,11 +411,13 @@
       color: #ffffff !important;
 
       width: 23px;
+
       height: 23px;
 
       display: flex;
 
       align-items: center;
+
       justify-content: center;
 
       border-radius: 50%;
@@ -310,6 +425,7 @@
       margin: 2px;
 
       font-weight: 700;
+
     }
 
 
@@ -326,6 +442,7 @@
       font-size: 0.75rem;
 
       padding: 1px 3px;
+
     }
 
 
@@ -347,12 +464,16 @@
 
       border-radius: 0 0 12px 12px;
 
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      box-shadow:
+        0 4px 12px rgba(0,0,0,0.08);
+
     }
 
 
     .special-days.show {
+
       display: block;
+
     }
 
 
@@ -365,6 +486,7 @@
       font-weight: 700;
 
       margin-bottom: 14px;
+
     }
 
 
@@ -389,6 +511,7 @@
       border-left: 4px solid #1a73e8;
 
       border-radius: 5px;
+
     }
 
 
@@ -399,6 +522,7 @@
       font-weight: 700;
 
       color: #1a73e8;
+
     }
 
 
@@ -407,17 +531,20 @@
       color: #333;
 
       font-weight: 500;
+
     }
 
 
     /* =========================================
-       YEAR FOOTER GROUP
+       YEAR FOOTER
     ========================================= */
 
     .year-event-month {
 
       margin-bottom: 15px;
+
     }
+
 
     .year-event-month-title {
 
@@ -428,34 +555,248 @@
       margin-bottom: 7px;
 
       font-size: 1rem;
+
     }
 
 
     /* =========================================
-       MOBILE
+       CUSTOM DAY VIEW
+    ========================================= */
+
+    .day-view-container {
+
+      display: none;
+
+      width: 100%;
+
+      background: #ffffff;
+
+      border-radius: 0 0 12px 12px;
+
+      box-shadow:
+        0 4px 12px rgba(0,0,0,0.08);
+
+      overflow: hidden;
+
+    }
+
+
+    /* =========================================
+       DAY VIEW MONTH HEADER
+    ========================================= */
+
+    .day-view-heading {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding: 18px 20px;
+
+      background: #eef4fb;
+
+      border-bottom: 1px solid #dfe6ee;
+
+    }
+
+
+    .day-view-heading-text {
+
+      color: #1a73e8;
+
+      font-size: 1.25rem;
+
+      font-weight: 700;
+
+    }
+
+
+    /* =========================================
+       DAY LIST
+    ========================================= */
+
+    .day-list {
+
+      width: 100%;
+
+    }
+
+
+    /* =========================================
+       EACH DAY
+    ========================================= */
+
+    .day-row {
+
+      display: grid;
+      grid-template-columns: 95px 1fr;
+      gap: 18px;
+      min-height: 92px;
+      padding: 12px 18px;
+      border-bottom: 1px solid #edf0f4;
+      transition: background 0.2s ease;
+    }
+
+    .day-row:hover {
+      background: #fafcff;
+    }
+
+
+    /* =========================================
+       DATE SIDE
+    ========================================= */
+
+    .day-date {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+
+    .day-week {
+      color: #555;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+
+    .day-number {
+      margin-top: 2px;
+      color: #333;
+      font-size: 1.65rem;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+
+    /* =========================================
+       TODAY DATE
+    ========================================= */
+
+    .day-row.today {
+      background: #eaf3ff;
+    }
+
+
+    .day-row.today
+    .day-week {
+      color: #1a73e8;
+    }
+
+
+    .day-row.today
+    .day-number {
+
+      background: #1a73e8;
+      color: #ffffff;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+
+    }
+
+
+    /* =========================================
+       EVENT SIDE
+    ========================================= */
+
+    .day-events {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 7px;
+      min-width: 0;
+    }
+
+
+    /* =========================================
+       DAY EVENT
+    ========================================= */
+
+    .day-event {
+
+      width: 100%;
+
+      padding: 11px 15px;
+
+      border-radius: 9px;
+
+      background: #1a73e8;
+
+      color: #ffffff;
+
+      font-size: 0.92rem;
+
+      font-weight: 600;
+
+      border-left: 5px solid #1557b0;
+
+      box-shadow:
+        0 2px 5px
+        rgba(26,115,232,0.15);
+
+    }
+
+
+    /* =========================================
+       EMPTY DAY
+    ========================================= */
+
+    .day-empty {
+
+      min-height: 60px;
+
+    }
+
+
+    /* =========================================
+       DAY VIEW MOBILE
     ========================================= */
 
     @media screen and (max-width: 700px) {
 
       body {
+
         padding: 8px;
+
       }
+
 
       .calendar-header {
+
         padding: 18px 12px;
+
       }
+
 
       .calendar-header h1 {
+
         font-size: 1.4rem;
+
       }
+
 
       .calendar-header p {
+
         font-size: 0.8rem;
+
       }
 
+
       .calendar-container {
+
         padding: 10px;
+
       }
+
 
       .fc .fc-toolbar {
 
@@ -464,22 +805,27 @@
         justify-content: center;
 
         gap: 7px;
+
       }
+
 
       .fc .fc-toolbar-title {
 
         font-size: 1.15rem !important;
+
       }
+
 
       .fc .fc-button {
 
         font-size: 0.78rem;
 
         padding: 6px 9px;
+
       }
 
 
-      /* Year view */
+      /* YEAR */
 
       .fc-multiMonthYear-view
       .fc-multimonth {
@@ -488,6 +834,7 @@
         repeat(1, 1fr) !important;
 
         gap: 12px;
+
       }
 
 
@@ -495,15 +842,84 @@
       .fc-daygrid-day-number {
 
         font-size: 0.72rem;
+
       }
 
 
-      /* Footer */
+      /* =====================================
+         DAY MOBILE
+      ====================================== */
+
+      .day-view-heading {
+
+        padding: 14px 10px;
+
+      }
+
+
+      .day-view-heading-text {
+
+        font-size: 1.05rem;
+
+      }
+
+
+      .day-row {
+
+        grid-template-columns: 65px 1fr;
+
+        gap: 10px;
+
+        min-height: 78px;
+
+        padding: 10px 8px;
+
+      }
+
+
+      .day-week {
+
+        font-size: 0.7rem;
+
+      }
+
+
+      .day-number {
+
+        font-size: 1.35rem;
+
+      }
+
+
+      .day-row.today
+      .day-number {
+
+        width: 42px;
+
+        height: 42px;
+
+      }
+
+
+      .day-event {
+
+        padding: 10px 12px;
+
+        font-size: 0.82rem;
+
+        border-left-width: 4px;
+
+      }
+
+
+      /* FOOTER */
 
       .special-days {
 
         padding: 18px 14px;
+
       }
+
 
       .special-event {
 
@@ -512,11 +928,14 @@
         flex-direction: column;
 
         gap: 3px;
+
       }
+
 
       .special-event-date {
 
         min-width: auto;
+
       }
 
     }
@@ -533,16 +952,38 @@
         font-size: 0.7rem;
 
         padding: 5px 7px;
+
       }
+
 
       .fc .fc-toolbar-title {
 
         font-size: 1rem !important;
+
+      }
+
+
+      .day-row {
+
+        grid-template-columns: 55px 1fr;
+
+        gap: 7px;
+
+      }
+
+
+      .day-event {
+
+        font-size: 0.78rem;
+
+        padding: 9px 10px;
+
       }
 
     }
 
   </style>
+
 </head>
 
 
@@ -560,18 +1001,48 @@
 
     <h1>Calendar for Bangladesh</h1>
 
-    <p>Bangladesh Calendar • Holidays & Events</p>
+    <p>
+      Bangladesh Calendar • Holidays & Events
+    </p>
 
   </header>
 
 
   <!-- =====================================
-       CALENDAR
+       FULLCALENDAR
   ====================================== -->
 
-  <div class="calendar-container">
+  <div
+    class="calendar-container"
+    id="calendarContainer">
 
     <div id="calendar"></div>
+
+  </div>
+
+
+  <!-- =====================================
+       CUSTOM DAY VIEW
+  ====================================== -->
+
+  <div
+    id="dayViewContainer"
+    class="day-view-container">
+
+    <div class="day-view-heading">
+
+      <div
+        id="dayViewHeadingText"
+        class="day-view-heading-text">
+      </div>
+
+    </div>
+
+
+    <div
+      id="dayList"
+      class="day-list">
+    </div>
 
   </div>
 
@@ -580,18 +1051,24 @@
        SPECIAL DAYS FOOTER
   ====================================== -->
 
-  <div id="specialDays" class="special-days">
+  <div
+    id="specialDays"
+    class="special-days">
 
-    <div id="specialDaysTitle"
-         class="special-days-title">
+    <div
+      id="specialDaysTitle"
+      class="special-days-title">
     </div>
 
-    <div id="specialDaysList"></div>
+    <div
+      id="specialDaysList">
+    </div>
 
   </div>
 
 
 </div>
+
 
 
 <script>
@@ -636,17 +1113,56 @@ const calendarEvents = [
 ];
 
 
+
+/* =========================================
+   DOM READY
+========================================= */
+
 document.addEventListener(
   'DOMContentLoaded',
   function () {
 
 
     const calendarEl =
-      document.getElementById('calendar');
+      document.getElementById(
+        'calendar'
+      );
+
+
+    const calendarContainer =
+      document.getElementById(
+        'calendarContainer'
+      );
+
+
+    const dayViewContainer =
+      document.getElementById(
+        'dayViewContainer'
+      );
+
+
+    const dayViewHeadingText =
+      document.getElementById(
+        'dayViewHeadingText'
+      );
+
+
+    const dayList =
+      document.getElementById(
+        'dayList'
+      );
 
 
     /* =====================================
-       CALENDAR
+       DAY VIEW ACTIVE
+    ====================================== */
+
+    let dayViewActive = false;
+
+
+
+    /* =====================================
+       FULLCALENDAR
     ====================================== */
 
     const calendar =
@@ -654,29 +1170,62 @@ document.addEventListener(
         calendarEl,
         {
 
-          /* Default */
-          initialView: 'dayGridMonth',
+          /* =================================
+             DEFAULT
+          ================================= */
+
+          initialView:
+            'dayGridMonth',
 
 
           /* =================================
-             HEADER MENU
+             HEADER
           ================================= */
 
           headerToolbar: {
 
-            left: 'prev,next',
+            left:
+              'prev,next today',
 
-            center: 'title',
+            center:
+              'title',
 
             right:
-              'multiMonthYear,dayGridMonth'
+              'dayView,multiMonthYear,dayGridMonth'
 
           },
 
 
-          /* Button names */
+          /* =================================
+             CUSTOM DAY BUTTON
+          ================================= */
+
+          customButtons: {
+
+            dayView: {
+
+              text: 'Day',
+
+              click: function () {
+
+                dayViewActive = true;
+
+                showDayView();
+
+              }
+
+            }
+
+          },
+
+
+          /* =================================
+             BUTTON TEXT
+          ================================= */
 
           buttonText: {
+
+            today: 'Today',
 
             multiMonthYear: 'Year',
 
@@ -685,21 +1234,28 @@ document.addEventListener(
           },
 
 
-          /* Sunday first */
+          /* =================================
+             SUNDAY FIRST
+          ================================= */
 
           firstDay: 0,
 
 
-          /* Options */
+          /* =================================
+             OPTIONS
+          ================================= */
 
           editable: true,
 
           selectable: true,
 
 
-          /* Events */
+          /* =================================
+             EVENTS
+          ================================= */
 
-          events: calendarEvents,
+          events:
+            calendarEvents,
 
 
           /* =================================
@@ -712,17 +1268,373 @@ document.addEventListener(
 
             updateSpecialDays();
 
+
+            /*
+               If Day view is active,
+               update the month list.
+            */
+
+            if (dayViewActive) {
+
+              renderDayView();
+
+            }
+
           }
 
         }
       );
 
 
+
+    /* =====================================
+       RENDER CALENDAR
+    ====================================== */
+
     calendar.render();
 
 
+
     /* =====================================
-       HIGHLIGHT CURRENT MONTH
+       SHOW DAY VIEW
+    ====================================== */
+
+    function showDayView() {
+
+      calendarContainer.style.display =
+        'none';
+
+
+      dayViewContainer.style.display =
+        'block';
+
+
+      document
+        .getElementById('specialDays')
+        .classList.remove('show');
+
+
+      renderDayView();
+
+    }
+
+
+
+    /* =====================================
+       RENDER FULL MONTH DAY LIST
+    ====================================== */
+
+    function renderDayView() {
+
+
+      dayList.innerHTML = '';
+
+
+      const currentDate =
+        calendar.getDate();
+
+
+      const year =
+        currentDate.getFullYear();
+
+
+      const month =
+        currentDate.getMonth();
+
+
+      const monthName =
+        currentDate.toLocaleString(
+          'en-US',
+          {
+            month: 'long'
+          }
+        );
+
+
+      /* =================================
+         HEADER TITLE
+      ================================= */
+
+      dayViewHeadingText.textContent =
+        monthName +
+        ' ' +
+        year;
+
+
+
+      /* =================================
+         NUMBER OF DAYS IN MONTH
+      ================================= */
+
+      const daysInMonth =
+        new Date(
+          year,
+          month + 1,
+          0
+        ).getDate();
+
+
+
+      /* =================================
+         TODAY
+      ================================= */
+
+      const today =
+        new Date();
+
+
+
+      /* =================================
+         CREATE EACH DAY
+      ================================= */
+
+      for (
+        let day = 1;
+        day <= daysInMonth;
+        day++
+      ) {
+
+
+        const date =
+          new Date(
+            year,
+            month,
+            day
+          );
+
+
+        const weekday =
+          date.toLocaleString(
+            'en-US',
+            {
+              weekday: 'short'
+            }
+          );
+
+
+        /* ===============================
+           FIND EVENTS
+        =============================== */
+
+        const dayEvents =
+          calendarEvents.filter(
+            function (event) {
+
+              const eventDate =
+                new Date(
+                  event.start
+                );
+
+
+              return (
+
+                eventDate.getFullYear()
+                === year
+
+                &&
+
+                eventDate.getMonth()
+                === month
+
+                &&
+
+                eventDate.getDate()
+                === day
+
+              );
+
+            }
+          );
+
+
+
+        /* ===============================
+           DAY ROW
+        =============================== */
+
+        const row =
+          document.createElement(
+            'div'
+          );
+
+
+        row.className =
+          'day-row';
+
+
+
+        /* ===============================
+           TODAY HIGHLIGHT
+        =============================== */
+
+        if (
+
+          today.getFullYear()
+          === year
+
+          &&
+
+          today.getMonth()
+          === month
+
+          &&
+
+          today.getDate()
+          === day
+
+        ) {
+
+          row.classList.add(
+            'today'
+          );
+
+        }
+
+
+
+        /* ===============================
+           DATE
+        =============================== */
+
+        const dateBox =
+          document.createElement(
+            'div'
+          );
+
+
+        dateBox.className =
+          'day-date';
+
+
+        dateBox.innerHTML =
+
+          '<div class="day-week">' +
+
+          weekday +
+
+          '</div>' +
+
+          '<div class="day-number">' +
+
+          day +
+
+          '</div>';
+
+
+
+        /* ===============================
+           EVENT AREA
+        =============================== */
+
+        const eventsBox =
+          document.createElement(
+            'div'
+          );
+
+
+        eventsBox.className =
+          'day-events';
+
+
+
+        /* ===============================
+           NO EVENT
+        =============================== */
+
+        if (
+          dayEvents.length === 0
+        ) {
+
+          const empty =
+            document.createElement(
+              'div'
+            );
+
+
+          empty.className =
+            'day-empty';
+
+
+          eventsBox.appendChild(
+            empty
+          );
+
+        }
+
+
+
+        /* ===============================
+           EVENTS
+        =============================== */
+
+        else {
+
+          dayEvents.forEach(
+            function (event) {
+
+
+              const eventBox =
+                document.createElement(
+                  'div'
+                );
+
+
+              eventBox.className =
+                'day-event';
+
+
+              eventBox.textContent =
+                event.title;
+
+
+
+              /* Event color */
+
+              if (event.color) {
+
+                eventBox.style.background =
+                  event.color;
+
+              }
+
+
+              eventsBox.appendChild(
+                eventBox
+              );
+
+            }
+          );
+
+        }
+
+
+
+        /* ===============================
+           ADD TO ROW
+        =============================== */
+
+        row.appendChild(
+          dateBox
+        );
+
+
+        row.appendChild(
+          eventsBox
+        );
+
+
+        dayList.appendChild(
+          row
+        );
+
+      }
+
+    }
+
+
+
+    /* =====================================
+       HIGHLIGHT CURRENT MONTH - YEAR
     ====================================== */
 
     function highlightCurrentMonth() {
@@ -732,39 +1644,44 @@ document.addEventListener(
         .querySelectorAll(
           '.fc-multimonth-month'
         )
-        .forEach(function (month) {
+        .forEach(
+          function (month) {
 
-          month.classList.remove(
-            'current-month'
-          );
+            month.classList.remove(
+              'current-month'
+            );
 
-        });
+          }
+        );
 
 
       document
         .querySelectorAll(
           '.fc-multimonth-month'
         )
-        .forEach(function (month) {
+        .forEach(
+          function (month) {
 
 
-          const todayCell =
-            month.querySelector(
-              '.fc-day-today'
-            );
+            const todayCell =
+              month.querySelector(
+                '.fc-day-today'
+              );
 
 
-          if (todayCell) {
+            if (todayCell) {
 
-            month.classList.add(
-              'current-month'
-            );
+              month.classList.add(
+                'current-month'
+              );
+
+            }
 
           }
-
-        });
+        );
 
     }
+
 
 
     /* =====================================
@@ -803,12 +1720,14 @@ document.addEventListener(
         calendar.getDate();
 
 
+
       /* =================================
          MONTH VIEW
       ================================= */
 
       if (
-        currentView === 'dayGridMonth'
+        currentView ===
+        'dayGridMonth'
       ) {
 
 
@@ -824,30 +1743,42 @@ document.addEventListener(
           calendarEvents.filter(
             function (event) {
 
+
               const eventDate =
-                new Date(event.start);
+                new Date(
+                  event.start
+                );
+
 
               return (
+
                 eventDate.getFullYear()
                 === year
+
                 &&
+
                 eventDate.getMonth()
                 === month
+
               );
 
             }
           );
 
 
-        /* No events */
 
-        if (monthEvents.length === 0) {
+        if (
+          monthEvents.length === 0
+        ) {
 
-          footer.classList.remove('show');
+          footer.classList.remove(
+            'show'
+          );
 
           return;
 
         }
+
 
 
         const monthName =
@@ -866,12 +1797,15 @@ document.addEventListener(
           ' – Special Days';
 
 
+
         monthEvents.forEach(
           function (event) {
 
 
             const eventDate =
-              new Date(event.start);
+              new Date(
+                event.start
+              );
 
 
             const day =
@@ -905,15 +1839,20 @@ document.addEventListener(
               '</div>';
 
 
-            list.appendChild(item);
+            list.appendChild(
+              item
+            );
 
           }
         );
 
 
-        footer.classList.add('show');
+        footer.classList.add(
+          'show'
+        );
 
       }
+
 
 
       /* =================================
@@ -934,8 +1873,12 @@ document.addEventListener(
           calendarEvents.filter(
             function (event) {
 
+
               const eventDate =
-                new Date(event.start);
+                new Date(
+                  event.start
+                );
+
 
               return (
                 eventDate.getFullYear()
@@ -946,15 +1889,19 @@ document.addEventListener(
           );
 
 
-        /* No events */
 
-        if (yearEvents.length === 0) {
+        if (
+          yearEvents.length === 0
+        ) {
 
-          footer.classList.remove('show');
+          footer.classList.remove(
+            'show'
+          );
 
           return;
 
         }
+
 
 
         title.textContent =
@@ -962,11 +1909,8 @@ document.addEventListener(
           ' – Special Days';
 
 
-        /*
-           Group events by month
-        */
-
         const grouped = {};
+
 
 
         yearEvents.forEach(
@@ -974,24 +1918,31 @@ document.addEventListener(
 
 
             const date =
-              new Date(event.start);
+              new Date(
+                event.start
+              );
 
 
             const month =
               date.getMonth();
 
 
-            if (!grouped[month]) {
+            if (
+              !grouped[month]
+            ) {
 
               grouped[month] = [];
 
             }
 
 
-            grouped[month].push(event);
+            grouped[month].push(
+              event
+            );
 
           }
         );
+
 
 
         Object.keys(grouped).forEach(
@@ -1006,6 +1957,7 @@ document.addEventListener(
 
             monthBox.className =
               'year-event-month';
+
 
 
             const monthName =
@@ -1030,12 +1982,15 @@ document.addEventListener(
               '</div>';
 
 
+
             grouped[monthIndex].forEach(
               function (event) {
 
 
                 const date =
-                  new Date(event.start);
+                  new Date(
+                    event.start
+                  );
 
 
                 const item =
@@ -1065,20 +2020,42 @@ document.addEventListener(
                   '</div>';
 
 
-                monthBox.appendChild(item);
+                monthBox.appendChild(
+                  item
+                );
 
               }
             );
 
 
-            list.appendChild(monthBox);
+            list.appendChild(
+              monthBox
+            );
 
           }
         );
 
-        footer.classList.add('show');
 
-      }  
+        footer.classList.add(
+          'show'
+        );
+
+      }
+
+
+      /* =================================
+         DAY VIEW
+      ================================= */
+
+      else {
+
+        footer.classList.remove(
+          'show'
+        );
+
+      }
+
+    }
 
   }
 
