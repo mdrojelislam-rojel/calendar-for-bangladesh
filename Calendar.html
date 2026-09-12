@@ -131,6 +131,27 @@
       }
 
       /* =========================================
+         HOLIDAY STYLING (FRIDAY & SATURDAY)
+      ========================================= */
+      /* শুক্রবার - গাঢ় লাল */
+      .fc .fc-day-fri .fc-col-header-cell-cushion {
+        color: #d93025 !important;
+      }
+      .fc .fc-day-fri .fc-daygrid-day-number {
+        color: #d93025 !important;
+        font-weight: 700;
+      }
+
+      /* শনিবার - হালকা লাল */
+      .fc .fc-day-sat .fc-col-header-cell-cushion {
+        color: #e57373 !important;
+      }
+      .fc .fc-day-sat .fc-daygrid-day-number {
+        color: #e57373 !important;
+        font-weight: 700;
+      }
+
+      /* =========================================
          TODAY - MONTH
       ========================================= */
       .fc .fc-day-today {
@@ -151,18 +172,19 @@
       }
 
       /* =========================================
-         YEAR VIEW
+         YEAR VIEW (GAP & BORDER REMOVED)
       ========================================= */
       .fc-multiMonthYear-view {
         margin-top: 5px;
       }
 
       .fc-multiMonthYear-view .fc-multimonth {
-        gap: 20px;
+        gap: 30px !important; /* মাসের মাঝখানের গ্যাপ বাড়ানো হলো */
       }
 
       .fc-multimonth-month {
-        border: 1px solid #e0e6ed;
+        border: none !important; /* সাইডের বর্ডার উঠিয়ে দেওয়া হলো */
+        box-shadow: none !important;
         border-radius: 9px;
         overflow: hidden;
         background: #ffffff;
@@ -177,6 +199,7 @@
         padding: 9px;
         margin: 0;
         text-align: center;
+        border-radius: 8px 8px 0 0;
       }
 
       .fc-multimonth-month .fc-col-header-cell {
@@ -197,8 +220,7 @@
       }
 
       .fc-multimonth-month.current-month {
-        border: 2px solid #1a73e8;
-        box-shadow: 0 4px 14px rgba(26, 115, 232, 0.18);
+        box-shadow: 0 4px 14px rgba(26, 115, 232, 0.15) !important;
       }
 
       .fc-multimonth-month.current-month .fc-multimonth-title {
@@ -515,7 +537,7 @@
       }
 
       /* =========================================
-         MOBILE OPTIMIZATION (MOBILE FIXED DISPLAY)
+         MOBILE OPTIMIZATION
       ========================================= */
       @media screen and (max-width: 700px) {
         body {
@@ -538,7 +560,6 @@
           padding: 10px 5px;
         }
 
-        /* তারিখের ঘর মোবাইল ভিউতে লম্বালম্বি বড় করার জন্য */
         .fc-daygrid-day {
           min-height: 75px !important;
         }
@@ -564,7 +585,7 @@
 
         .fc-multiMonthYear-view .fc-multimonth {
           grid-template-columns: repeat(1, 1fr) !important;
-          gap: 12px;
+          gap: 20px !important;
         }
 
         .fc-multimonth-month .fc-daygrid-day-number {
@@ -790,7 +811,7 @@
         const calendar = new FullCalendar.Calendar(calendarEl, {
           initialView: 'dayGridMonth',
           headerToolbar: false,
-          height: 'auto', // ক্যালেন্ডারকে লম্বালম্বিভাবে সব সপ্তাহ দেখানোর অনুমতি দেয়
+          height: 'auto',
           contentHeight: 'auto',
           buttonText: {
             today: 'Today',
@@ -915,7 +936,7 @@
           updateCustomTitle();
         }
 
-        /* RENDER FULL MONTH DAY LIST */
+        /* RENDER FULL MONTH DAY LIST WITH FRIDAY & SATURDAY COLORING */
         function renderDayView() {
           dayList.innerHTML = '';
 
@@ -955,9 +976,21 @@
 
             const dateBox = document.createElement('div');
             dateBox.className = 'day-date';
+            
+            let weekColor = '#555';
+            let numColor = '#333';
+
+            if (weekday === 'Fri') {
+              weekColor = '#d93025';
+              numColor = '#d93025';
+            } else if (weekday === 'Sat') {
+              weekColor = '#e57373';
+              numColor = '#e57373';
+            }
+
             dateBox.innerHTML =
-              '<div class="day-week">' + weekday + '</div>' +
-              '<div class="day-number">' + day + '</div>';
+              '<div class="day-week" style="color:' + weekColor + ';">' + weekday + '</div>' +
+              '<div class="day-number" style="color:' + numColor + ';">' + day + '</div>';
 
             const eventsBox = document.createElement('div');
             eventsBox.className = 'day-events';
