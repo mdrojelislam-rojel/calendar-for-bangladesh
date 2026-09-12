@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,35 +8,34 @@
 
     <style>
       /* =========================================
-         PAGE
+         PAGE & GENERAL STYLES
       ========================================= */
       * {
+        margin: 0;
+        padding: 0;
         box-sizing: border-box;
       }
 
       body {
-        margin: 0;
+        margin-top: 10px;
         padding: 20px;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
         background: #f5f7fa;
         color: #222;
       }
 
-      /* =========================================
-         MAIN WRAPPER
-      ========================================= */
       .calendar-wrapper {
         width: 100%;
-        max-width: 1800px;
+        max-width: 1400px;
         margin: 0 auto;
       }
 
       /* =========================================
-         WEBSITE HEADER
+         HEADER
       ========================================= */
       .calendar-header {
         width: 100%;
-        margin: 10px auto;
+        margin: 0 auto;
         background: #000075;
         color: #ffffff;
         padding: 22px 25px;
@@ -59,372 +58,7 @@
       }
 
       /* =========================================
-         CALENDAR CONTAINER
-      ========================================= */
-      .calendar-container {
-        width: 100%;
-        background: #ffffff;
-        padding: 25px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        border-radius: 0 0 10px 10px;
-      }
-
-      /* =========================================
-         TOOLBAR
-      ========================================= */
-      .fc .fc-toolbar {
-        margin-bottom: 20px;
-        gap: 10px;
-      }
-
-      .fc .fc-toolbar-title {
-        font-size: 1.5rem !important;
-        font-weight: 700;
-        color: #1a73e8;
-      }
-
-      /* =========================================
-         BUTTONS
-      ========================================= */
-      .fc .fc-button {
-        border-radius: 7px !important;
-        font-weight: 600;
-        box-shadow: none !important;
-      }
-
-      .fc .fc-button-primary {
-        background-color: #1a73e8 !important;
-        border-color: #1a73e8 !important;
-      }
-
-      .fc .fc-button-primary:hover {
-        background-color: #1557b0 !important;
-        border-color: #1557b0 !important;
-      }
-
-      .fc .fc-button-active {
-        background-color: #1557b0 !important;
-        border-color: #1557b0 !important;
-      }
-
-      /* =========================================
-         MONTH VIEW
-      ========================================= */
-      .fc-daygrid-day {
-        min-height: 90px;
-      }
-
-      .fc .fc-col-header-cell {
-        background: #eef4fb;
-      }
-
-      .fc .fc-col-header-cell-cushion {
-        color: #1a73e8;
-        font-weight: 700;
-        padding: 11px 4px;
-      }
-
-      .fc .fc-daygrid-day-number {
-        color: #222;
-        font-weight: 500;
-        padding: 8px;
-      }
-
-      /* =========================================
-         HOLIDAY STYLING (FRIDAY & SATURDAY)
-      ========================================= */
-      /* শুক্রবার - গাঢ় লাল */
-      .fc .fc-day-fri .fc-col-header-cell-cushion {
-        color: #d93025 !important;
-      }
-      .fc .fc-day-fri .fc-daygrid-day-number {
-        color: #d93025 !important;
-        font-weight: 700;
-      }
-
-      /* শনিবার - হালকা লাল */
-      .fc .fc-day-sat .fc-col-header-cell-cushion {
-        color: #e57373 !important;
-      }
-      .fc .fc-day-sat .fc-daygrid-day-number {
-        color: #e57373 !important;
-        font-weight: 700;
-      }
-
-      /* =========================================
-         TODAY - MONTH
-      ========================================= */
-      .fc .fc-day-today {
-        background: #eaf3ff !important;
-      }
-
-      .fc .fc-day-today .fc-daygrid-day-number {
-        background: #1a73e8;
-        color: #ffffff !important;
-        width: 34px;
-        height: 34px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        margin: 5px;
-        font-weight: 700;
-      }
-
-      /* =========================================
-         YEAR VIEW (GAP & BORDER REMOVED)
-      ========================================= */
-      .fc-multiMonthYear-view {
-        margin-top: 5px;
-      }
-
-      .fc-multiMonthYear-view .fc-multimonth {
-        gap: 30px !important; /* মাসের মাঝখানের গ্যাপ বাড়ানো হলো */
-      }
-
-      .fc-multimonth-month {
-        border: none !important; /* সাইডের বর্ডার উঠিয়ে দেওয়া হলো */
-        box-shadow: none !important;
-        border-radius: 9px;
-        overflow: hidden;
-        background: #ffffff;
-        transition: 0.2s ease;
-      }
-
-      .fc .fc-multimonth-title {
-        background: #1a73e8;
-        color: #ffffff;
-        font-size: 1rem;
-        font-weight: 700;
-        padding: 9px;
-        margin: 0;
-        text-align: center;
-        border-radius: 8px 8px 0 0;
-      }
-
-      .fc-multimonth-month .fc-col-header-cell {
-        background: #eef4fb;
-      }
-
-      .fc-multimonth-month .fc-col-header-cell-cushion {
-        color: #1a73e8;
-        font-size: 0.75rem;
-        font-weight: 700;
-        padding: 5px 2px;
-      }
-
-      .fc-multimonth-month .fc-daygrid-day-number {
-        font-size: 0.75rem;
-        padding: 4px;
-        color: #333;
-      }
-
-      .fc-multimonth-month.current-month {
-        box-shadow: 0 4px 14px rgba(26, 115, 232, 0.15) !important;
-      }
-
-      .fc-multimonth-month.current-month .fc-multimonth-title {
-        background: #1557b0;
-      }
-
-      .fc-multimonth-month .fc-day-today {
-        background: #eaf3ff !important;
-      }
-
-      .fc-multimonth-month .fc-day-today .fc-daygrid-day-number {
-        background: #1a73e8;
-        color: #ffffff !important;
-        width: 23px;
-        height: 23px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        margin: 2px;
-        font-weight: 700;
-      }
-
-      /* =========================================
-         EVENTS
-      ========================================= */
-      .fc-event {
-        border-radius: 4px !important;
-        border: none !important;
-        font-size: 0.75rem;
-        padding: 1px 3px;
-      }
-
-      /* =========================================
-         SPECIAL DAYS FOOTER
-      ========================================= */
-      .special-days {
-        display: none;
-        width: 100%;
-        background: #ffffff;
-        border-top: 1px solid #e0e6ed;
-        padding: 22px 25px;
-        border-radius: 0 0 12px 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        margin-top: 15px;
-      }
-
-      .special-days.show {
-        display: block;
-      }
-
-      .special-days-title {
-        color: #1a73e8;
-        font-size: 1.2rem;
-        font-weight: 700;
-        margin-bottom: 14px;
-      }
-
-      .special-event {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 10px 12px;
-        margin-bottom: 8px;
-        background: #f5f9ff;
-        border-left: 4px solid #1a73e8;
-        border-radius: 5px;
-      }
-
-      .special-event-date {
-        min-width: 75px;
-        font-weight: 700;
-        color: #1a73e8;
-      }
-
-      .special-event-name {
-        color: #333;
-        font-weight: 500;
-      }
-
-      .year-event-month {
-        margin-bottom: 15px;
-      }
-
-      .year-event-month-title {
-        font-weight: 700;
-        color: #1557b0;
-        margin-bottom: 7px;
-        font-size: 1rem;
-      }
-
-      /* =========================================
-         CUSTOM DAY VIEW
-      ========================================= */
-      .day-view-container {
-        display: none;
-        width: 100%;
-        background: #ffffff;
-        border-radius: 0 0 12px 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        overflow: hidden;
-      }
-
-      .day-view-heading {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 18px 20px;
-        background: #eef4fb;
-        border-bottom: 1px solid #dfe6ee;
-      }
-
-      .day-view-heading-text {
-        color: #1a73e8;
-        font-size: 1.25rem;
-        font-weight: 700;
-      }
-
-      .day-list {
-        width: 100%;
-      }
-
-      .day-row {
-        display: grid;
-        grid-template-columns: 95px 1fr;
-        gap: 18px;
-        min-height: 92px;
-        padding: 12px 18px;
-        border-bottom: 1px solid #edf0f4;
-        transition: background 0.2s ease;
-      }
-
-      .day-row:hover {
-        background: #fafcff;
-      }
-
-      .day-date {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-      }
-
-      .day-week {
-        color: #555;
-        font-size: 0.82rem;
-        font-weight: 700;
-        text-transform: uppercase;
-      }
-
-      .day-number {
-        margin-top: 2px;
-        color: #333;
-        font-size: 1.65rem;
-        font-weight: 700;
-        line-height: 1.1;
-      }
-
-      .day-row.today {
-        background: #eaf3ff;
-      }
-
-      .day-row.today .day-week {
-        color: #1a73e8;
-      }
-
-      .day-row.today .day-number {
-        background: #1a73e8;
-        color: #ffffff;
-        width: 48px;
-        height: 48px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-      }
-
-      .day-events {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 7px;
-        min-width: 0;
-      }
-
-      .day-event {
-        width: 100%;
-        padding: 11px 15px;
-        border-radius: 9px;
-        background: #1a73e8;
-        color: #ffffff;
-        font-size: 0.92rem;
-        font-weight: 600;
-        border-left: 5px solid #1557b0;
-        box-shadow: 0 2px 5px rgba(26, 115, 232, 0.15);
-      }
-
-      .day-empty {
-        min-height: 60px;
-      }
-
-      /* =========================================
-         CALENDAR CONTROL BAR
+         CONTROL BAR
       ========================================= */
       .calendar-control-bar {
         position: relative;
@@ -531,13 +165,240 @@
         flex: 1;
         text-align: center;
         color: #1a73e8;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         font-weight: 700;
-        padding-right: 40px;
+        padding-right: 20px;
       }
 
       /* =========================================
-         MOBILE OPTIMIZATION
+         CALENDAR CONTAINER & CELL STYLES
+      ========================================= */
+      .calendar-container {
+        width: 100%;
+        background: #ffffff;
+        padding: 25px;
+        border-radius: 0 0 12px 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .fc-daygrid-day {
+        min-height: 100px;
+      }
+
+      .fc .fc-col-header-cell {
+        background: #eef4fb;
+      }
+
+      .fc .fc-col-header-cell-cushion {
+        color: #1a73e8;
+        font-weight: 900;
+        padding: 11px 4px;
+      }
+
+      .fc-daygrid-day-frame {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 4px;
+      }
+
+      /* Clean Top Header in Each Cell */
+      .fc-cell-header-box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 2px 4px;
+      }
+
+      .fc .fc-daygrid-day-number {
+        color: #222;
+        font-weight: 700;
+        font-size: 1rem;
+        padding: 0;
+      }
+
+      /* Compact Bangla & Hijri Date Display */
+      .fc-day-subtext {
+        font-size: 0.72rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        line-height: 1.25;
+      }
+
+      .fc-bangla-text {
+        color: #d93025;
+        font-weight: 700;
+      }
+
+      .fc-hijri-text {
+        color: #1b5e20;
+        font-weight: 700;
+      }
+
+      /* =========================================
+         HOLIDAY STYLING (FRIDAY & SATURDAY)
+      ========================================= */
+      .fc .fc-day-fri .fc-col-header-cell-cushion,
+      .fc .fc-day-fri .fc-daygrid-day-number {
+        color: #eb0000 !important;
+        font-weight: 800;
+      }
+
+      .fc .fc-day-sat .fc-col-header-cell-cushion,
+      .fc .fc-day-sat .fc-daygrid-day-number {
+        color: #cc2727 !important;
+        font-weight: 800;
+      }
+
+      /* TODAY STYLING */
+      .fc .fc-day-today {
+        background: #eaf3ff !important;
+      }
+
+      .fc .fc-day-today .fc-daygrid-day-number {
+        background: #1a73e8;
+        color: #ffffff !important;
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+      }
+
+      /* =========================================
+         YEAR VIEW
+      ========================================= */
+      .fc-multiMonthYear-view .fc-multimonth {
+        gap: 20px !important;
+      }
+
+      .fc-multimonth-month {
+        border-radius: 9px;
+        overflow: hidden;
+        background: #ffffff;
+      }
+
+      .fc .fc-multimonth-title {
+        background: #1a73e8;
+        color: #ffffff;
+        font-size: 1rem;
+        font-weight: 700;
+        padding: 8px;
+        text-align: center;
+      }
+
+      /* =========================================
+         CUSTOM DAY VIEW (DAY LIST)
+      ========================================= */
+      .day-view-container {
+        display: none;
+        width: 100%;
+        background: #ffffff;
+        border-radius: 0 0 12px 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+      }
+
+      .day-view-heading {
+        text-align: center;
+        padding: 16px;
+        background: #eef4fb;
+        border-bottom: 1px solid #dfe6ee;
+        color: #1a73e8;
+        font-size: 1.2rem;
+        font-weight: 700;
+      }
+
+      .day-row {
+        display: grid;
+        grid-template-columns: 160px 1fr;
+        gap: 15px;
+        padding: 12px 18px;
+        border-bottom: 1px solid #edf0f4;
+      }
+
+      .day-row.today {
+        background: #eaf3ff;
+      }
+
+      .day-date {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .day-week {
+        font-size: 0.8rem;
+        font-weight: 700;
+      }
+
+      .day-number {
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+
+      .day-events {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 6px;
+      }
+
+      .day-event {
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: #1a73e8;
+        color: #ffffff;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      /* =========================================
+         SPECIAL DAYS FOOTER
+      ========================================= */
+      .special-days {
+        display: none;
+        width: 100%;
+        background: #ffffff;
+        padding: 20px 25px;
+        border-radius: 0 0 12px 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        margin-top: 15px;
+      }
+
+      .special-days.show {
+        display: block;
+      }
+
+      .special-days-title {
+        color: #1a73e8;
+        font-size: 1.15rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
+
+      .special-event {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 12px;
+        margin-bottom: 8px;
+        background: #f5f9ff;
+        border-left: 4px solid #1a73e8;
+        border-radius: 5px;
+      }
+
+      .special-event-date {
+        min-width: 220px;
+        font-weight: 700;
+        color: #1a73e8;
+      }
+
+      /* =========================================
+         MOBILE RESPONSIVE
       ========================================= */
       @media screen and (max-width: 700px) {
         body {
@@ -586,6 +447,7 @@
         .fc-multiMonthYear-view .fc-multimonth {
           grid-template-columns: repeat(1, 1fr) !important;
           gap: 20px !important;
+          
         }
 
         .fc-multimonth-month .fc-daygrid-day-number {
@@ -721,13 +583,13 @@
 
   <body>
     <div class="calendar-wrapper">
-      <!-- WEBSITE HEADER -->
+      <!-- HEADER -->
       <header class="calendar-header">
         <h1>Calendar for Bangladesh</h1>
-        <p>Bangladesh Calendar • Holidays & Events</p>
+        <p> BANGLA & HIJRI Dates with Holidays </p>
       </header>
 
-      <!-- CALENDAR CONTROL BAR -->
+      <!-- CONTROL BAR -->
       <div class="calendar-control-bar">
         <button class="calendar-menu-button" id="menuButton" type="button">
           <span class="menu-icon">☰</span>
@@ -735,9 +597,9 @@
         </button>
 
         <div class="calendar-menu" id="calendarMenu">
-          <button data-view="dayGridMonth" type="button">📅 Month</button>
           <button data-view="multiMonthYear" type="button">🗓️ Year</button>
-          <button data-view="dayList" type="button">📋 Day</button>
+          <button data-view="dayGridMonth" type="button">📅 Month</button>
+          <button data-view="dayList" type="button">📋 Day List</button>
         </div>
 
         <div class="calendar-navigation">
@@ -749,17 +611,15 @@
         <div class="custom-calendar-title" id="customCalendarTitle"></div>
       </div>
 
-      <!-- FULLCALENDAR -->
+      <!-- FULLCALENDAR CONTAINER -->
       <div class="calendar-container" id="calendarContainer">
         <div id="calendar"></div>
       </div>
 
-      <!-- CUSTOM DAY VIEW -->
+      <!-- CUSTOM DAY LIST VIEW -->
       <div class="day-view-container" id="dayViewContainer">
-        <div class="day-view-heading">
-          <div class="day-view-heading-text" id="dayViewHeadingText"></div>
-        </div>
-        <div class="day-list" id="dayList"></div>
+        <div class="day-view-heading" id="dayViewHeadingText"></div>
+        <div id="dayList"></div>
       </div>
 
       <!-- SPECIAL DAYS FOOTER -->
@@ -771,14 +631,14 @@
 
     <script>
       /* =========================================
-         EVENTS / BANGLADESH SPECIAL DAYS
+         EVENTS LIST
       ========================================= */
       const calendarEvents = [
-        { title: "Language Martyrs' Day", start: "2026-02-21", color: "#d93025" },
-        { title: "Independence Day", start: "2026-03-26", color: "#d93025" },
-        { title: "Bangla New Year", start: "2026-04-14", color: "#d93025" },
-        { title: "May Day", start: "2026-05-01", color: "#d93025" },
-        { title: "Victory Day", start: "2026-12-16", color: "#d93025" }
+        { title: "Language Martyrs' Day (শহীদ দিবস)", start: "2026-02-21", color: "#d93025" },
+        { title: "Independence Day (স্বাধীনতা দিবস)", start: "2026-03-26", color: "#d93025" },
+        { title: "Bangla New Year (পহেলা বৈশাখ)", start: "2026-04-14", color: "#d93025" },
+        { title: "May Day (মে দিবস)", start: "2026-05-01", color: "#d93025" },
+        { title: "Victory Day (বিজয় দিবস)", start: "2026-12-16", color: "#d93025" }
       ];
 
       function parseDate(dateStr) {
@@ -786,8 +646,101 @@
         return new Date(parts[0], parts[1] - 1, parts[2]);
       }
 
+      function toBanglaDigits(num) {
+        const banglaDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+        return String(num).replace(/\d/g, d => banglaDigits[d]);
+      }
+
       /* =========================================
-         DOM READY
+         BANGLA CALENDAR CONVERTER (BD Government Rules)
+      ========================================= */
+      function getBanglaDate(date) {
+        const year = date.getFullYear();
+        const day = date.getDate();
+
+        const isLeapYear = (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+        const banglaMonths = [
+          'বৈশাখ', 'জ্যৈষ্ঠ', 'আষাঢ়', 'শ্রাবণ', 'ভাদ্র', 'আশ্বিন',
+          'কার্তিক', 'অগ্রহায়ণ', 'পৌষ', 'মাঘ', 'ফাল্গুন', 'চৈত্র'
+        ];
+
+        let apr14 = new Date(year, 3, 14);
+        let bYear, startDate;
+
+        if (date >= apr14) {
+          bYear = year - 593;
+          startDate = apr14;
+        } else {
+          bYear = year - 594;
+          startDate = new Date(year - 1, 3, 14);
+        }
+
+        const diffTime = Math.floor((date - startDate) / (1000 * 60 * 60 * 24));
+        const monthLengths = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, isLeapYear ? 31 : 30, 30];
+
+        let dayCount = diffTime;
+        let bMonthIndex = 0;
+
+        for (let i = 0; i < 12; i++) {
+          if (dayCount < monthLengths[i]) {
+            bMonthIndex = i;
+            break;
+          }
+          dayCount -= monthLengths[i];
+        }
+
+        let bDay = dayCount + 1;
+        return {
+          day: toBanglaDigits(bDay),
+          month: banglaMonths[bMonthIndex],
+          year: toBanglaDigits(bYear)
+        };
+      }
+
+      /* =========================================
+         HIJRI CALENDAR CONVERTER (ACCURATE ALGORITHM)
+      ========================================= */
+      function getHijriDate(date) {
+        let day = date.getDate();
+        let month = date.getMonth();
+        let year = date.getFullYear();
+
+        let m = month + 1;
+        let y = year;
+        if (m <= 2) {
+          y -= 1;
+          m += 12;
+        }
+        let a = Math.floor(y / 100);
+        let b = 2 - a + Math.floor(a / 4);
+        let jd = Math.floor(365.25 * (y + 4716)) + Math.floor(30.6001 * (m + 1)) + day + b - 1524.5;
+
+        let l = jd - 1948440 + 10632;
+        let n = Math.floor((l - 1) / 10631);
+        l = l - 10631 * n + 354;
+        let j = (Math.floor((10985 - l) / 5316)) * (Math.floor((50 * l) / 17719)) +
+                (Math.floor(l / 5670)) * (Math.floor((43 * l) / 15238));
+        l = l - (Math.floor((30 - j) / 15)) * (Math.floor((17719 * j) / 50)) -
+            (Math.floor(j / 16)) * (Math.floor((15238 * j) / 43)) + 29;
+        let hMonth = Math.floor((24 * l) / 709);
+        let hDay = l - Math.floor((709 * hMonth) / 24);
+        let hYear = 30 * n + j - 30;
+
+        const hijriMonths = [
+          'মহররম', 'সফর', 'রবিউল আউয়াল', 'রবিউস সানি',
+          'জমাদিউল আউয়াল', 'জমাদিউস সানি', 'রজব', 'শাবান',
+          'রমজান', 'শাওয়াল', 'জিলকদ', 'জিলহজ্জ'
+        ];
+
+        return {
+          day: toBanglaDigits(hDay),
+          month: hijriMonths[hMonth - 1] || '',
+          year: toBanglaDigits(hYear)
+        };
+      }
+
+      /* =========================================
+         DOM LOAD & FULLCALENDAR
       ========================================= */
       document.addEventListener('DOMContentLoaded', function () {
         const calendarEl = document.getElementById('calendar');
@@ -807,21 +760,34 @@
 
         let dayViewActive = false;
 
-        /* FULLCALENDAR INIT WITH AUTO HEIGHT */
         const calendar = new FullCalendar.Calendar(calendarEl, {
           initialView: 'dayGridMonth',
           headerToolbar: false,
           height: 'auto',
           contentHeight: 'auto',
-          buttonText: {
-            today: 'Today',
-            multiMonthYear: 'Year',
-            dayGridMonth: 'Month'
-          },
-          firstDay: 0,
+          firstDay: 5,
           editable: true,
           selectable: true,
           events: calendarEvents,
+
+          // ক্যালেন্ডার সেলে কেবল বাংলা ও হিজরী 'সংখ্যা' প্রদর্শন করা হলো (ক্লিন ভিউয়ের জন্য)
+          dayCellContent: function (arg) {
+            const date = arg.date;
+            const bangla = getBanglaDate(date);
+            const hijri = getHijriDate(date);
+
+            return {
+              html: `
+                <div class="fc-cell-header-box">
+                  <span class="fc-daygrid-day-number">${arg.dayNumberText}</span>
+                  <div class="fc-day-subtext">
+                    <span class="fc-bangla-text">${bangla.day}</span>
+                    <span class="fc-hijri-text">${hijri.day}</span>
+                  </div>
+                </div>
+              `
+            };
+          },
 
           datesSet: function () {
             highlightCurrentMonth();
@@ -843,14 +809,12 @@
           calendarMenu.classList.toggle('show');
         });
 
-        /* CLOSE MENU ON OUTSIDE CLICK */
         document.addEventListener('click', function (event) {
           if (!calendarMenu.contains(event.target) && !menuButton.contains(event.target)) {
             calendarMenu.classList.remove('show');
           }
         });
 
-        /* MENU ITEM SELECTION */
         menuItems.forEach(function (button) {
           button.addEventListener('click', function () {
             const selectedView = button.getAttribute('data-view');
@@ -872,7 +836,7 @@
           });
         });
 
-        /* NAVIGATION: PREVIOUS */
+        /* NAVIGATION BUTTONS */
         prevButton.addEventListener('click', function () {
           if (dayViewActive) {
             const currentDate = new Date(calendar.getDate());
@@ -885,7 +849,6 @@
           updateCustomTitle();
         });
 
-        /* NAVIGATION: NEXT */
         nextButton.addEventListener('click', function () {
           if (dayViewActive) {
             const currentDate = new Date(calendar.getDate());
@@ -898,7 +861,6 @@
           updateCustomTitle();
         });
 
-        /* NAVIGATION: TODAY */
         todayButton.addEventListener('click', function () {
           dayViewActive = false;
           dayViewContainer.style.display = 'none';
@@ -912,21 +874,23 @@
           calendarMenu.classList.remove('show');
         });
 
-        /* UPDATE CUSTOM TITLE */
+        /* UPDATE HEADER TITLE */
         function updateCustomTitle() {
           const currentDate = calendar.getDate();
           const monthName = currentDate.toLocaleString('en-US', { month: 'long' });
           const year = currentDate.getFullYear();
           const currentView = calendar.view.type;
 
+          const bangla = getBanglaDate(currentDate);
+          const hijri = getHijriDate(currentDate);
+
           if (!dayViewActive && currentView === 'multiMonthYear') {
-            customCalendarTitle.textContent = year;
+            customCalendarTitle.textContent = `${year} (বঙ্গাব্দ ${bangla.year} / হিজরী ${hijri.year})`;
           } else {
-            customCalendarTitle.textContent = monthName + ' ' + year;
+            customCalendarTitle.textContent = `${monthName} ${year} • ${bangla.month} ${bangla.year} • ${hijri.month} ${hijri.year}`;
           }
         }
 
-        /* SHOW CUSTOM DAY VIEW */
         function showDayView() {
           calendarContainer.style.display = 'none';
           dayViewContainer.style.display = 'block';
@@ -936,7 +900,7 @@
           updateCustomTitle();
         }
 
-        /* RENDER FULL MONTH DAY LIST WITH FRIDAY & SATURDAY COLORING */
+        /* DAY LIST VIEW (FULL DETAILS WITH MONTH NAMES) */
         function renderDayView() {
           dayList.innerHTML = '';
 
@@ -953,6 +917,9 @@
           for (let day = 1; day <= daysInMonth; day++) {
             const date = new Date(year, month, day);
             const weekday = date.toLocaleString('en-US', { weekday: 'short' });
+
+            const bangla = getBanglaDate(date);
+            const hijri = getHijriDate(date);
 
             const dayEvents = calendarEvents.filter(function (event) {
               const eventDate = parseDate(event.start);
@@ -976,7 +943,7 @@
 
             const dateBox = document.createElement('div');
             dateBox.className = 'day-date';
-            
+
             let weekColor = '#555';
             let numColor = '#333';
 
@@ -990,16 +957,14 @@
 
             dateBox.innerHTML =
               '<div class="day-week" style="color:' + weekColor + ';">' + weekday + '</div>' +
-              '<div class="day-number" style="color:' + numColor + ';">' + day + '</div>';
+              '<div class="day-number" style="color:' + numColor + ';">' + day + '</div>' +
+              '<div style="font-size: 0.78rem; color: #d93025; font-weight: 600; margin-top: 2px;">' + bangla.day + ' ' + bangla.month + '</div>' +
+              '<div style="font-size: 0.75rem; color: #1b5e20; font-weight: 600;">' + hijri.day + ' ' + hijri.month + '</div>';
 
             const eventsBox = document.createElement('div');
             eventsBox.className = 'day-events';
 
-            if (dayEvents.length === 0) {
-              const empty = document.createElement('div');
-              empty.className = 'day-empty';
-              eventsBox.appendChild(empty);
-            } else {
+            if (dayEvents.length > 0) {
               dayEvents.forEach(function (event) {
                 const eventBox = document.createElement('div');
                 eventBox.className = 'day-event';
@@ -1017,21 +982,19 @@
           }
         }
 
-        /* HIGHLIGHT CURRENT MONTH IN YEAR VIEW */
         function highlightCurrentMonth() {
           document.querySelectorAll('.fc-multimonth-month').forEach(function (month) {
             month.classList.remove('current-month');
           });
 
           document.querySelectorAll('.fc-multimonth-month').forEach(function (month) {
-            const todayCell = month.querySelector('.fc-day-today');
-            if (todayCell) {
+            if (month.querySelector('.fc-day-today')) {
               month.classList.add('current-month');
             }
           });
         }
 
-        /* UPDATE SPECIAL DAYS FOOTER */
+        /* SPECIAL DAYS LIST FOOTER */
         function updateSpecialDays() {
           const footer = document.getElementById('specialDays');
           const title = document.getElementById('specialDaysTitle');
@@ -1070,12 +1033,14 @@
             monthEvents.forEach(function (event) {
               const eventDate = parseDate(event.start);
               const day = eventDate.getDate();
+              const bangla = getBanglaDate(eventDate);
+              const hijri = getHijriDate(eventDate);
 
               const item = document.createElement('div');
               item.className = 'special-event';
               item.innerHTML =
                 '<div class="special-event-date">' +
-                day + ' ' + monthName +
+                day + ' ' + monthName + ' • ' + bangla.day + ' ' + bangla.month + ' • ' + hijri.day + ' ' + hijri.month +
                 '</div>' +
                 '<div class="special-event-name">' +
                 event.title +
@@ -1118,16 +1083,16 @@
                 month: 'long'
               });
 
-              monthBox.innerHTML =
-                '<div class="year-event-month-title">' + monthName + '</div>';
-
               grouped[monthIndex].forEach(function (event) {
                 const date = parseDate(event.start);
+                const bangla = getBanglaDate(date);
+                const hijri = getHijriDate(date);
+
                 const item = document.createElement('div');
                 item.className = 'special-event';
                 item.innerHTML =
                   '<div class="special-event-date">' +
-                  date.getDate() + ' ' + monthName +
+                  date.getDate() + ' ' + monthName + ' • ' + bangla.day + ' ' + bangla.month + ' • ' + hijri.day + ' ' + hijri.month +
                   '</div>' +
                   '<div class="special-event-name">' +
                   event.title +
