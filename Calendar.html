@@ -202,39 +202,75 @@
         padding: 4px;
       }
 
-      /* Clean Top Header in Each Cell */
-      .fc-cell-header-box {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        padding: 2px 4px;
+/* =========================================
+         EXACT CELL LAYOUT (English Top, Bangla/Hijri Bottom)
+      ========================================= */
+      .fc .fc-daygrid-day-frame {
+        position: relative !important;
+        min-height: 95px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding: 6px !important;
       }
 
-      .fc .fc-daygrid-day-number {
+      /* FullCalendar-এর ডিফল্ট টপ লেআউট ওভাররাইড */
+      .fc .fc-daygrid-day-top {
+        flex-direction: column !important;
+        width: 100% !important;
+        align-items: center !important;
+      }
+
+      /* ইংরেজি তারিখ (উপরে ও মাঝখানে বড় করে) */
+      .fc-english-date {
         color: #222;
-        font-weight: 700;
-        font-size: 1rem;
-        padding: 0;
+        font-weight: 800;
+        font-size: 1.5rem;
+        line-height: 1.2;
+        margin-top: 2px;
+        text-align: center;
       }
 
-      /* Compact Bangla & Hijri Date Display */
-      .fc-day-subtext {
-        font-size: 0.72rem;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        line-height: 1.25;
+      /* বাংলা ও হিজরী তারিখের ব্লক (একদম নিচে দুই পাশে) */
+      .fc-sub-dates {
+        position: absolute !important;
+        bottom: 6px !important;
+        left: 8px !important;
+        right: 8px !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        width: calc(100% - 16px) !important;
+        pointer-events: none;
       }
 
+      /* বাংলা তারিখ (নিচে বামে) */
       .fc-bangla-text {
         color: #d93025;
         font-weight: 700;
+        font-size: 0.85rem;
       }
 
+      /* হিজরী তারিখ (নিচে ডানে) */
       .fc-hijri-text {
         color: #1b5e20;
         font-weight: 700;
+        font-size: 0.85rem;
+      }
+
+      /* TODAY STYLING (আজকের তারিখের গোল নীল ব্যাকগ্রাউন্ড) */
+      .fc .fc-day-today .fc-english-date {
+        background: #1a73e8;
+        color: #ffffff !important;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        font-size: 1.2rem;
       }
 
       /* =========================================
@@ -452,6 +488,23 @@
 
         .fc-multimonth-month .fc-daygrid-day-number {
           font-size: 0.72rem;
+        }
+        .fc-english-date {
+          font-size: 1.2rem;
+        }
+        .fc-sub-dates {
+          left: 4px !important;
+          right: 4px !important;
+          bottom: 4px !important;
+          width: calc(100% - 8px) !important;
+        }
+        .fc-bangla-text, .fc-hijri-text {
+          font-size: 0.75rem;
+        }
+        .fc .fc-day-today .fc-english-date {
+          width: 30px;
+          height: 30px;
+          font-size: 1rem;
         }
 
         .day-view-heading {
@@ -768,7 +821,7 @@
           selectable: true,
           events: calendarEvents,
 
-          // ক্যালেন্ডার সেলে কেবল বাংলা ও হিজরী 'সংখ্যা' প্রদর্শন করা হলো (ক্লিন ভিউয়ের জন্য)
+// ক্যালেন্ডার সেলে ইংরেজি উপরে, বাংলা ও হিজরী নিচে 
           dayCellContent: function (arg) {
             const date = arg.date;
             const bangla = getBanglaDate(date);
@@ -776,12 +829,10 @@
 
             return {
               html: `
-                <div class="fc-cell-header-box">
-                  <span class="fc-daygrid-day-number">${arg.dayNumberText}</span>
-                  <div class="fc-day-subtext">
-                    <span class="fc-bangla-text">${bangla.day}</span>
-                    <span class="fc-hijri-text">${hijri.day}</span>
-                  </div>
+                <div class="fc-english-date">${arg.dayNumberText}</div>
+                <div class="fc-sub-dates">
+                  <span class="fc-bangla-text">${bangla.day}</span>
+                  <span class="fc-hijri-text">${hijri.day}</span>
                 </div>
               `
             };
