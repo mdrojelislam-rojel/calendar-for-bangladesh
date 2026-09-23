@@ -432,7 +432,42 @@
         font-weight: 700;
         color: #1a73e8;
       }
-
+      
+      .day-cell-container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 75px; 
+        justify-content: space-between;
+        padding: 4px;
+      }
+      
+      .en-date {
+        font-size: 16px;
+        font-weight: bold;
+        align-self: flex-start; 
+      }
+            
+      .bottom-dates {
+        display: flex;
+        justify-content: space-between; 
+        width: 100%;
+        margin-top: auto; 
+        font-size: 12px;
+      }
+      
+      .bn-date {
+        color: #1b5e20; 
+        padding: 4px;
+        margin-laft: 5px;
+      }
+      
+      .ar-date {
+        color: #0d47a1;
+        padding: 4px;
+        margin-right: 5px;
+      }
+      
       /* =========================================
          MOBILE RESPONSIVE
       ========================================= */
@@ -821,18 +856,21 @@
           selectable: true,
           events: calendarEvents,
 
-// ক্যালেন্ডার সেলে ইংরেজি উপরে, বাংলা ও হিজরী নিচে 
-          dayCellContent: function (arg) {
+// ক্যালেন্ডার সেলে ইংরেজি উপরে, বাংলা ও হিজরী নিচে / Position English at the top, Bengali and Hijri at the bottom in the calendar cell.
+         
+           dayCellContent: function(arg) {
             const date = arg.date;
             const bangla = getBanglaDate(date);
             const hijri = getHijriDate(date);
-
-            return {
+        
+          return {
               html: `
-                <div class="fc-english-date">${arg.dayNumberText}</div>
-                <div class="fc-sub-dates">
-                  <span class="fc-bangla-text">${bangla.day}</span>
-                  <span class="fc-hijri-text">${hijri.day}</span>
+                <div class="day-cell-container">
+                  <div class="en-date">${arg.dayNumberText}</div>
+                  <div class="bottom-dates">
+                    <span class="bn-date">${bangla.day}</span>
+                    <span class="ar-date">${hijri.day}</span>
+                  </div>
                 </div>
               `
             };
